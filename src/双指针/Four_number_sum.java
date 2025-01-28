@@ -34,8 +34,37 @@ public class Four_number_sum {
         return result;
     }
 
+
+    public static List<List<Integer>> fourSum_ex(int[] nums, int target){
+        List<List<Integer>> ret=new ArrayList<>();
+        int n=nums.length;
+        Arrays.sort(nums);
+
+        for(int i=0;i<n;){
+            for(int j=i+1;j<n;){
+                int left=j+1,right=n-1;
+                long aim=(long)target-nums[left]-nums[right];
+                while(left<right){
+                    int sum=nums[left]+nums[right];
+                    if(sum>aim) right--;
+                    else if(sum<aim) left++;
+                    else{
+                        ret.add(new ArrayList<Integer>(Arrays.asList(nums[i],nums[j],nums[left],nums[right])));
+                        while(left<right&&nums[left]==nums[left-1]) left++;
+                        while(left<right&&nums[right]==nums[right-1]) right--;
+                    }
+                }
+                j++;
+                while(j<n&&nums[j]==nums[j-1]) j++;
+            }
+            i++;
+            while(i<n&&nums[i]==nums[i-1]) i++;
+        }
+        return ret;
+    }
+
     public static void main(String[] args) {
         int[] nums={1000000000,1000000000,1000000000,1000000000};
-        System.out.println(fourSum(nums,-294967296));
+        System.out.println(fourSum_ex(nums,-294967296));
     }
 }

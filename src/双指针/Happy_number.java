@@ -31,10 +31,19 @@ public class Happy_number {
         return false;
     }
 
+    public static boolean isHappy_ex(int n){
+        int slow=n,fast=bitSum(n);
+        while(slow!=fast){
+            slow=bitSum(slow);
+            fast=bitSum(bitSum(fast));
+        }
+        return slow==1;
+    }
+
     public static void main(String[] args) {
         int n=111;
         System.out.println(bitSum(n));
 
-//        System.out.println(isHappy(2));
+        System.out.println(isHappy_ex(19));
     }
 }

@@ -16,8 +16,19 @@ public class Max_container {
         return ret;
     }
 
+    public static int maxArea_ex(int[] height){
+        int left=0,right=height.length-1,ret=0;
+        while(left<right){
+            int val=(right-left)*Math.min(height[left],height[right]);
+            ret=Math.max(ret,val);
+            if(height[left]<height[right]) left++;
+            else right--;
+        }
+        return ret;
+    }
+
     public static void main(String[] args) {
         int[] height={1,8,6,2,5,4,8,3,7};
-        System.out.println(maxArea(height));
+        System.out.println(maxArea_ex(height));
     }
 }

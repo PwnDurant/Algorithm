@@ -22,8 +22,27 @@ public class Effective_triangle {
         return count;
     }
 
+    public static int triangleNumber_ex(int[] nums){
+//        先将数组进行排序
+        Arrays.sort(nums);
+//        利用双指针解决
+        int ret=0,n=nums.length;
+        for(int i=n-1;i>=2;i--){
+            int left=0,right=i-1;
+            while(left<right){
+                if(nums[left]+nums[right]>nums[i]){
+                    ret+=right-left;
+                    right--;
+                }else{
+                    left++;
+                }
+            }
+        }
+        return ret;
+    }
+
     public static void main(String[] args) {
         int[] nums={4,2,3,4};
-        System.out.println(triangleNumber(nums));
+        System.out.println(triangleNumber_ex(nums));
     }
 }

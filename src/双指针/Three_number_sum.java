@@ -41,8 +41,37 @@ public class Three_number_sum {
         return result;
     }
 
+
+    public static List<List<Integer>> threeSum_ex(int[] nums){
+        List<List<Integer>> ret=new ArrayList<>();
+        int n=nums.length;
+//        排序
+        Arrays.sort(nums);
+//        利用双指针解决问题
+        for(int i=0;i<n;){
+//            小优化
+            if(nums[i]>0) break;
+            int left=i+1,right=n-1,target=-nums[i];
+            while(left<right){
+                int sum=nums[left]+nums[right];
+                if(sum>target) right--;
+                else if(sum<target) left++;
+                else{
+                    ret.add(new ArrayList<Integer>(Arrays.asList(nums[i],nums[left],nums[right])));
+                    left++;right--;
+                    while(left<right&&nums[left]==nums[left-1]) left++;
+                    while(left<right&&nums[right]==nums[right-1]) right--;
+                }
+            }
+            i++;
+            while(i<n&&nums[i]==nums[i-1]) i++;
+        }
+        return ret;
+    }
+
+
     public static void main(String[] args) {
         int[] nums={-2,0,1,1,2};
-        System.out.println(threeSum(nums));
+        System.out.println(threeSum_ex(nums));
     }
 }
