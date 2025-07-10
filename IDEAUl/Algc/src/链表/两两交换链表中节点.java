@@ -52,7 +52,7 @@ public class 两两交换链表中节点 {
         listNode.next = listNode1;
         listNode1.next = listNode2;
         listNode2.next = listNode3;
-        ListNode.Print(swapPairsOld(listNode));
+        ListNode.Print(swapPairsNew(listNode));
     }
 
 }
