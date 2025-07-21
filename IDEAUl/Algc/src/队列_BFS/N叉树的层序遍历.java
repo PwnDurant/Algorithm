@@ -73,6 +73,26 @@ public class N叉树的层序遍历 {
         return result;
     }
 
+    public static List<List<Integer>> levelOrderNew(Node root) {
+        List<List<Integer>> ret = new ArrayList<>();
+        if(root == null) return ret;
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            int sz = q.size();
+            List<Integer> tmp = new ArrayList<>();
+            for (int i = 0; i < sz; i++) {
+                Node t = q.poll();
+                tmp.add(t.val);
+                for (Node child : t.children) {
+                    if(child != null) q.add(child);
+                }
+            }
+            ret.add(tmp);
+        }
+        return ret;
+    }
+
     public static void main(String[] args) {
 //        输入：root = [1,null,3,2,4,null,5,6]
 //        输出：[[1],[3,2,4],[5,6]]
