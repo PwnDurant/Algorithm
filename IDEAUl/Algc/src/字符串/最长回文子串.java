@@ -5,6 +5,7 @@ package 字符串;
  */
 public class 最长回文子串 {
 
+
     public static String longestPalindromeOld(String s) {
         int tmp = 0,begin = 0,end = 0;
         int mid = 0,left,right;
